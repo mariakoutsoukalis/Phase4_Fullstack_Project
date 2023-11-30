@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 fake = Faker()
 
 def create_users():
-    for i in range(1, 11):
+    for i in range(1, 61):
         first_name = fake.first_name()
         last_name = fake.last_name()
 
@@ -155,7 +155,8 @@ def create_discussion_posts():
         bookclub_id = bookclub_map.get(book_data['bookclub_category'])
         book_to_bookclub[book_data['title']] = bookclub_id
     for user in users:
-        for _ in range(6):
+        for _ in range(1):
+            user = choice(users)
             book = choice(books_data)
             # Check if the association already exists
             association = UserBookClubAssociation.query.filter_by(user_id=user.id, bookclub_id=bookclub_id).first()
