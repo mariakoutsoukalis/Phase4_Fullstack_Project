@@ -43,6 +43,13 @@ def get_bookclub(bookclub_id):
     return jsonify(bookclub.to_dict())
 
 """Routes for DiscussionPost"""
+#Route for Discussion Post by Book Club
+#curl -i http://127.0.0.1:5000/discussions/bybookclub/<int:bookclub_id>
+@app.route('/discussions/bybookclub/<int:bookclub_id>', methods=['GET'])
+def get_discussions_by_bookclub(bookclub_id):
+    posts = DiscussionPost.query.filter_by(bookclub_id=bookclub_id).all()
+    return jsonify([post.to_dict() for post in posts])
+
 #curl -i http://127.0.0.1:5000/discussions
 @app.route('/discussions', methods=['GET'])
 def get_discussion_posts():
@@ -103,6 +110,13 @@ def create_discussion_post(bookclub_id):
     return jsonify(post.to_dict()), 201
 
 """Route for Books"""
+#Route for Books by BookClub
+#curl -i http://127.0.0.1:5000/books/bybookclub/<int:bookclub_id>
+@app.route('/books/bybookclub/<int:bookclub_id>', methods=['GET'])
+def get_books_by_bookclub(bookclub_id):
+    books = Book.query.filter_by(bookclub_id=bookclub_id).all()
+    return jsonify([book.to_dict() for book in books])
+
 #curl -i http://127.0.0.1:5000/books
 @app.route('/books', methods=['GET'])
 def get_books():
@@ -113,6 +127,7 @@ def get_books():
 def get_book(book_id):
     book = Book.query.get(book_id)
     return jsonify(book.to_dict())
+
 
 """Route for UserBookClubAssociation"""
 #curl -i http://127.0.0.1:5000/user_bookclub
