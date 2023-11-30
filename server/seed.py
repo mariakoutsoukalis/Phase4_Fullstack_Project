@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 fake = Faker()
 
 def create_users():
-    for i in range(1, 11):
+    for i in range(1, 61):
         first_name = fake.first_name()
         last_name = fake.last_name()
 
@@ -31,17 +31,18 @@ def create_users():
 
 def create_bookclubs():
     pairs = [
-    ("Mystery Masters", "A group for enthusiasts who relish unraveling the twists and turns of mystery novels, from classic whodunits to contemporary thrillers."),
-    ("Fantasy Realm Readers", "This club dives into the imaginative worlds of fantasy literature, exploring epic sagas, magical realms, and mythical creatures."),
-    ("Sci-Fi Explorers Club", "A haven for those passionate about science fiction, discussing everything from space operas to dystopian futures and advanced technologies."),
-    ("Historical Fiction Chronicles", "A gathering for lovers of historical fiction, where members travel back in time through stories that blend real history with rich narrative."),
-    ("Romantic Hearts Book Club", "For those who adore romance novels, this club explores tales of love, relationships, and emotional journeys across various settings."),
-    ("Biography Buffs Circle", "A forum for readers fascinated by biographies and memoirs, delving into the lives and experiences of notable figures from past and present.")
+    ("Mystery Masters", "A group for enthusiasts who relish unraveling the twists and turns of mystery novels, from classic whodunits to contemporary thrillers.", "https://imgur.com/aW5EAh7"),
+    ("Fantasy Realm Readers", "This club dives into the imaginative worlds of fantasy literature, exploring epic sagas, magical realms, and mythical creatures.", "https://imgur.com/6FtVyDA"),
+    ("Sci-Fi Explorers Club", "A haven for those passionate about science fiction, discussing everything from space operas to dystopian futures and advanced technologies.","https://imgur.com/4IXdEua"),
+    ("Historical Fiction Chronicles", "A gathering for lovers of historical fiction, where members travel back in time through stories that blend real history with rich narrative.", "https://imgur.com/YWo3ncS"),
+    ("Romantic Hearts Book Club", "For those who adore romance novels, this club explores tales of love, relationships, and emotional journeys across various settings.", "https://imgur.com/HZgSOr6"),
+    ("Biography Buffs Circle", "A forum for readers fascinated by biographies and memoirs, delving into the lives and experiences of notable figures from past and present.", "https://imgur.com/bY3bgMW")
 ]
-    for name, description in pairs:
+    for name, description, image_url in pairs:
         bookclub = BookClub(
             name=name,
-            description=description
+            description=description,
+            image_url=image_url
         )
 
         db.session.add(bookclub)
@@ -154,7 +155,8 @@ def create_discussion_posts():
         bookclub_id = bookclub_map.get(book_data['bookclub_category'])
         book_to_bookclub[book_data['title']] = bookclub_id
     for user in users:
-        for _ in range(6):
+        for _ in range(1):
+            user = choice(users)
             book = choice(books_data)
             # Check if the association already exists
             association = UserBookClubAssociation.query.filter_by(user_id=user.id, bookclub_id=bookclub_id).first()
