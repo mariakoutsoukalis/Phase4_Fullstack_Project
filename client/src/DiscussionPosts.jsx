@@ -4,7 +4,12 @@ import AddCommentForm from "./AddCommentForm";
 
 
 export default function DiscussionPosts() {
-    // const [outdoors, setOutDoorsData] = useState(useLoaderData().outdoorsData)
+    const [discussionPosts, setdiscussionPosts] = useState(useLoaderData().discussionPostsData)
+    const [allBooks, setAllBooks] = useState(useLoaderData().allBooksData)
+    
+    
+    
+    
     function handleSubmit(newObj) {
        
       
@@ -21,20 +26,36 @@ export default function DiscussionPosts() {
     return (
         <div>
             <div className="background-div"></div>
-
+            <br></br>
             <div>
-            <h1>Available Books:</h1>
-            <ol>
-                <li>Book1</li>
-                <li>Book2</li>
-                <li>Book3</li>
-                <li>Book4</li>
-            </ol>
+            <h1 style={{ fontWeight: 'bold' }}>Available Books:</h1>
+            
+            <ul>
+                {allBooks.map((book) => (
+                <li key={book.id}>{book.title}</li>
+                ))}
+            </ul>
             </div>
             <br></br>
 
             <div>
-                User Post : This is a test comment <input type="submit" value="Edit Post" className="submit"/>
+            <h1 style={{ fontWeight: 'bold' }}>Discussion Posts:</h1>
+                {discussionPosts.map(discussionPost => 
+                <div key={discussionPost.id}>
+                    {/* <h2>User: {discussionPost.content}</h2>  */}
+                    
+                   User: <input
+                    type="text"
+                    value={discussionPost.content} 
+                    disabled
+                    style={{
+                        width: '50%', // Adjust width as needed
+                        padding: '10px', // Adjust padding as needed
+                        marginTop: '10px', // Adjust margin as needed
+                    }}
+                    />
+                </div>)}
+               
             </div>
             <br></br>
 

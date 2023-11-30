@@ -6,38 +6,38 @@ import { useLoaderData } from "react-router-dom";
 
 export default function HomePage() {
 
-    const [thingsTodisplay, setThingsToDisplay] = useState(useLoaderData().recommendedData)
-    const [outdoors, setOutDoorsData] = useState(useLoaderData().outdoorsData)
-    const [museums, setMuseumData] = useState(useLoaderData().museumData)
-    const [entertainment, setEntertainment] = useState(useLoaderData().entertainmentData)
+    // const [thingsTodisplay, setThingsToDisplay] = useState(useLoaderData().recommendedData)
+    // const [outdoors, setOutDoorsData] = useState(useLoaderData().outdoorsData)
+    // const [museums, setMuseumData] = useState(useLoaderData().museumData)
+    // const [entertainment, setEntertainment] = useState(useLoaderData().entertainmentData)
     
-    const [search, setSearch] = useState("")
+    // const [search, setSearch] = useState("")
 
-    function handleOutdoorsClick(){
-        setThingsToDisplay(outdoors)
-    }
-    function handleMuseumsClick(){
-        setThingsToDisplay(museums)
-    }
-    function handleEntertainmentClick(){
-        setThingsToDisplay(entertainment)
-    }
+    // function handleOutdoorsClick(){
+    //     setThingsToDisplay(outdoors)
+    // }
+    // function handleMuseumsClick(){
+    //     setThingsToDisplay(museums)
+    // }
+    // function handleEntertainmentClick(){
+    //     setThingsToDisplay(entertainment)
+    // }
    
-        const filteredThingsToDisplay= thingsTodisplay.filter( thingToDisplay => thingToDisplay.name.toLowerCase().includes(search.toLowerCase())
-        || thingToDisplay.city.toLowerCase().includes(search.toLowerCase()))
+    //     const filteredThingsToDisplay= thingsTodisplay.filter( thingToDisplay => thingToDisplay.name.toLowerCase().includes(search.toLowerCase())
+    //     || thingToDisplay.city.toLowerCase().includes(search.toLowerCase()))
     
 
     return (
         <div className="container">
             <div className="background-div">
-                <div className="center-vertically">
+                {/* <div className="center-vertically">
                     <div className="search-container">
                         <input type="text" id="search-box" placeholder="Search for experiences and cities"
                         value={search} onChange={(event) => setSearch(event.target.value)}/>
                     </div>
-                </div>
+                </div> */}
             </div>
-            <br></br>
+            {/* <br></br>
             <div className="button-container">
                 <button className="custom-button" onClick={handleOutdoorsClick}>Outdoors</button>
                 <button className="custom-button" onClick={handleMuseumsClick}>Museums</button>
@@ -56,7 +56,7 @@ export default function HomePage() {
                         </div>
                     
                 </div>)}
-            </div>
+            </div> */}
         </div>
     )
 }

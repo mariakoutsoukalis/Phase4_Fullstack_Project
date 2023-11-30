@@ -27,7 +27,7 @@ export default function AddCommentForm({ handleSubmit }) {
     return (
         <form onSubmit={handleFormSubmit} className="flex flex-col justify-between">
             
-            <label>Enter comments:</label> <input name="discussionPostDescription" type="text" placeholder="Enter your comments..." className="input-text" value={formData.discussionPostDescription} onChange={handleChange}/>
+            <label style={{ fontWeight: 'bold' }}>Enter comments:</label> <input name="discussionPostDescription" type="text" placeholder="Enter your comments..." className="input-text" value={formData.discussionPostDescription} onChange={handleChange}/>
             
             <input type="submit" value="Add New Comment" className="submit"/>
             

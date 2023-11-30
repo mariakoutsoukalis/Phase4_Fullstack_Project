@@ -46,36 +46,36 @@ const router = createBrowserRouter([
         path: "/",
         element: <HomePage />,
        
-        loader: async () => {
-          const recommendedDataResp = fetch("http://localhost:3000/recommended").then(response => response.json());
-          const outdoorsDataResp = fetch("http://localhost:3000/outdoors").then(response => response.json());
-          const museumDataResp = fetch("http://localhost:3000/museums").then(response => response.json());
-          const entertainmentDataResp = fetch("http://localhost:3000/entertainment").then(response => response.json());
+        // loader: async () => {
+        //   const recommendedDataResp = fetch("http://localhost:3000/recommended").then(response => response.json());
+        //   const outdoorsDataResp = fetch("http://localhost:3000/outdoors").then(response => response.json());
+        //   const museumDataResp = fetch("http://localhost:3000/museums").then(response => response.json());
+        //   const entertainmentDataResp = fetch("http://localhost:3000/entertainment").then(response => response.json());
         
-          // Use Promise.all to wait for all requests to complete
-          const [data1, data2, data3, data4] = await Promise.all([recommendedDataResp, outdoorsDataResp, museumDataResp, entertainmentDataResp]);
+        //   // Use Promise.all to wait for all requests to complete
+        //   const [data1, data2, data3, data4] = await Promise.all([recommendedDataResp, outdoorsDataResp, museumDataResp, entertainmentDataResp]);
         
-          // You can process the data as needed
-          return { recommendedData: data1, outdoorsData: data2, museumData: data3, entertainmentData: data4 };
-        }
+        //   // You can process the data as needed
+        //   return { recommendedData: data1, outdoorsData: data2, museumData: data3, entertainmentData: data4 };
+        // }
         
       },
       {
         // ...the user visits [URL].
         path: "add",
         element: <AddPlaces />,
-        loader: async () => {
+        // loader: async () => {
         
-          const outdoorsDataResp = fetch("http://localhost:3000/outdoors").then(response => response.json());
-          const museumDataResp = fetch("http://localhost:3000/museums").then(response => response.json());
-          const entertainmentDataResp = fetch("http://localhost:3000/entertainment").then(response => response.json());
+        //   const outdoorsDataResp = fetch("http://localhost:3000/outdoors").then(response => response.json());
+        //   const museumDataResp = fetch("http://localhost:3000/museums").then(response => response.json());
+        //   const entertainmentDataResp = fetch("http://localhost:3000/entertainment").then(response => response.json());
         
-          // Use Promise.all to wait for all requests to complete
-          const [data1, data2, data3] = await Promise.all([outdoorsDataResp, museumDataResp, entertainmentDataResp]);
+        //   // Use Promise.all to wait for all requests to complete
+        //   const [data1, data2, data3] = await Promise.all([outdoorsDataResp, museumDataResp, entertainmentDataResp]);
         
-          // You can process the data as needed
-          return { outdoorsData: data1, museumData: data2, entertainmentData: data3 };
-        }
+        //   // You can process the data as needed
+        //   return { outdoorsData: data1, museumData: data2, entertainmentData: data3 };
+        // }
         
       },
       {
@@ -99,9 +99,22 @@ const router = createBrowserRouter([
         }
       },
       {
-        // ...the user visits [URL]/about.
-        path: "/discussion-posts",
-        element: <DiscussionPosts />
+        path: "/discussions/bybookclub/:id", // Use :id as a placeholder for the dynamic parameter
+        element: <DiscussionPosts />,
+        loader: async ({ params }) => {
+          const { id } = params;
+      
+          // Modify the fetch URL to include the dynamic id parameter
+          const allDiscussionsDataResp = fetch(`/discussions/bybookclub/${id}`).then(response => response.json());
+          const allBooksDataResp = fetch(`/books/bybookclub/${id}`).then(response => response.json());
+          
+          
+          // Use Promise.all to wait for all requests to complete
+          const [data1, data2] = await Promise.all([allDiscussionsDataResp, allBooksDataResp]);
+      
+          // You can process the data as needed
+          return { discussionPostsData: data1 , allBooksData: data2};
+        }
       }
 
     ]
