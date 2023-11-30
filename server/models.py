@@ -96,6 +96,7 @@ class DiscussionPost(db.Model, SerializerMixin):
 
     # Foreign Key: Linking each post to a user
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    username = db.Column(db.String(120), nullable=True)
 
     # Relationship back to user
     user = db.relationship('User', back_populates='discussion_posts')
