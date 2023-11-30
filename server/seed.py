@@ -168,7 +168,15 @@ def create_discussion_posts():
             post_date = fake.date_between(start_date='-30d', end_date='today')
             # Get the book club ID for this book
             bookclub_id = book_to_bookclub.get(book['title'])
-            post = DiscussionPost(user_id=user.id, content=post_content, post_date=post_date, likes=randint(0, 100), bookclub_id=bookclub_id)
+    
+            post = DiscussionPost(
+            user_id=user.id,
+            username=user.username,  # Set the username here
+            content=post_content,
+            post_date=post_date,
+            likes=randint(0, 100),
+            bookclub_id=bookclub_id
+        )
             
             db.session.add(post)
     db.session.commit()
