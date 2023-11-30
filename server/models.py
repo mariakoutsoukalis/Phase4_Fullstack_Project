@@ -73,6 +73,7 @@ class BookClub(db.Model, SerializerMixin):
     id = Column(Integer, primary_key=True)
     name = Column(String(20), unique=True, nullable=False)
     description = Column(Text, nullable=False)
+    image_url = Column(String(255)) 
 
     # One-to-Many: A book club can have many books
     books = db.relationship('Book', back_populates='bookclub')

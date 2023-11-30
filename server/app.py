@@ -30,6 +30,28 @@ def get_user(user_id):
     user = User.query.get(user_id)
     return jsonify(user.to_dict(rules=('-password', '-discussion_posts', '-bookclub_associations')))
 
+#Route added to funnel usernames from discussion posts
+#curl i- http://127.0.0.1:5000/usernames-from-discussions
+@app.route('/usernames-from-discussions', methods=['GET'])
+def get_usernames_from_discussions():
+    # Fetch all discussion posts
+    posts = DiscussionPost.query.all()
+
+    # Initialize an empty list to store usernames
+    usernames = []
+
+    # Iterate through each post
+    for post in posts:
+        # Fetch the user associated with the post
+        user = User.query.get(post.user_id)
+
+        # If the user exists, add their username to the list
+        if user:
+            usernames.append(user.username)
+
+    # Return the list of usernames as a JSON response
+    return jsonify(usernames)
+
 """Route for BookClub"""
 #curi i- http://127.0.0.1:5000/bookclubs
 @app.route('/bookclubs', methods=['GET'])
