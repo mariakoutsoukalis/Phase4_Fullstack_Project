@@ -163,3 +163,7 @@ package-lock.json
 */package-lock.json
 client_frontend/
 */client_frontend/
+
+# Local Garbage
+.DS_Store
+*/.DS_Store
