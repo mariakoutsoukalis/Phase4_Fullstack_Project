@@ -49,6 +49,7 @@ def get_bookclub(bookclub_id):
 def get_discussions_by_bookclub(bookclub_id):
     posts = DiscussionPost.query.filter_by(bookclub_id=bookclub_id).all()
     return jsonify([post.to_dict() for post in posts])
+    
 
 #curl -i http://127.0.0.1:5000/discussions
 @app.route('/discussions', methods=['GET'])
