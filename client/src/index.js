@@ -43,7 +43,8 @@ const router = createBrowserRouter([
       {
         // ...the user visits [URL].
         path: "/",
-        element: <HomePage />,
+        element: <HomePage />
+        
       },
       {
         // ...the user visits [URL]/about.
