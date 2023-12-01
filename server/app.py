@@ -116,8 +116,14 @@ def create_discussion_post(bookclub_id):
     def get_fake_likes():
         fake = Faker()
         return fake.random_int(min=0, max=500)  # Adjust the range as needed for likes
+    
+    def get_fake_user_name():
+        fake = Faker()
+        return fake.name() 
+
 
     user_id = get_fake_user_id()
+    username = get_fake_user_name()
     likes = get_fake_likes()  # Generate fake likes
     content = request.json.get('content')
     
@@ -125,7 +131,7 @@ def create_discussion_post(bookclub_id):
         return jsonify({"error": "No content provided"}), 400
 
     post_date = datetime.utcnow()  # Sets the current UTC time as the post date
-    post = DiscussionPost(content=content, post_date=post_date, likes=likes, user_id=user_id, bookclub_id=bookclub_id)
+    post = DiscussionPost(content=content, post_date=post_date, likes=likes, user_id=user_id, bookclub_id=bookclub_id, username=username)
     
     db.session.add(post)
     db.session.commit()

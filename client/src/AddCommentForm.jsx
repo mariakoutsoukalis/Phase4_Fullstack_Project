@@ -1,36 +1,42 @@
-import { useState } from "react"
-
-// This form lets users add new teas to our backend.
-// Note: On `submit`, this form will trigger `handleSubmit(event)`,
+import { useState } from "react";
 
 export default function AddCommentForm({ handleSubmit }) {
-    // We'll control the form's inputs with state.
-    const [formData, setFormdata] = useState([{
-        discussionPostDescription:""
-        
-        }
-    ]);
-    
-    function handleChange(event){
-            setFormdata({...formData, [event.target.name]: event.target.value})
-    }
-    function handleFormSubmit(event){
-        event.preventDefault();
-        const newObj={
-            discussionPostDescription:formData.discussionPostDescription
-        }
-        handleSubmit(newObj);
-        setFormdata({
-            discussionPostDescription:""
-          })
-    }
-    return (
-        <form onSubmit={handleFormSubmit} className="flex flex-col justify-between">
-            
-            <label style={{ fontWeight: 'bold' }}>Enter comments:</label> <input name="discussionPostDescription" type="text" placeholder="Enter your comments..." className="input-text" value={formData.discussionPostDescription} onChange={handleChange}/>
-            
-            <input type="submit" value="Add New Comment" className="submit"/>
-            
-        </form>
-    )
+  const [formData, setFormdata] = useState({
+    content: "",
+  });
+
+  function handleChange(event) {
+    setFormdata({ ...formData, [event.target.name]: event.target.value });
+  }
+
+  function handleFormSubmit(event) {
+    event.preventDefault();
+    const newObj = {
+      content: formData.content,
+    };
+    handleSubmit(newObj);
+    setFormdata({
+      content: "",
+    });
+  }
+
+  return (
+    <form onSubmit={handleFormSubmit} className="bg-white p-4 rounded-md shadow-md my-4">
+      <label className="block text-xl font-semibold mb-2">Enter comments:</label>
+      <input
+        name="content"
+        type="text"
+        placeholder="Enter your comments..."
+        className="w-full p-2 border border-gray-300 rounded-md mb-4"
+        value={formData.content}
+        onChange={handleChange}
+      />
+      <button
+        type="submit"
+        className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300"
+      >
+        Add New Post
+      </button>
+    </form>
+  );
 }

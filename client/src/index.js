@@ -26,7 +26,6 @@ import {
 import Error from './error';
 import Root from "./routes/root";
 import HomePage from './HomePage';
-import AddPlaces from './routes/AddPlaces';
 import About from './routes/about';
 import BookClub from './routes/BookClub';
 import DiscussionPosts from './DiscussionPosts';
@@ -45,38 +44,6 @@ const router = createBrowserRouter([
         // ...the user visits [URL].
         path: "/",
         element: <HomePage />,
-       
-        // loader: async () => {
-        //   const recommendedDataResp = fetch("http://localhost:3000/recommended").then(response => response.json());
-        //   const outdoorsDataResp = fetch("http://localhost:3000/outdoors").then(response => response.json());
-        //   const museumDataResp = fetch("http://localhost:3000/museums").then(response => response.json());
-        //   const entertainmentDataResp = fetch("http://localhost:3000/entertainment").then(response => response.json());
-        
-        //   // Use Promise.all to wait for all requests to complete
-        //   const [data1, data2, data3, data4] = await Promise.all([recommendedDataResp, outdoorsDataResp, museumDataResp, entertainmentDataResp]);
-        
-        //   // You can process the data as needed
-        //   return { recommendedData: data1, outdoorsData: data2, museumData: data3, entertainmentData: data4 };
-        // }
-        
-      },
-      {
-        // ...the user visits [URL].
-        path: "add",
-        element: <AddPlaces />,
-        // loader: async () => {
-        
-        //   const outdoorsDataResp = fetch("http://localhost:3000/outdoors").then(response => response.json());
-        //   const museumDataResp = fetch("http://localhost:3000/museums").then(response => response.json());
-        //   const entertainmentDataResp = fetch("http://localhost:3000/entertainment").then(response => response.json());
-        
-        //   // Use Promise.all to wait for all requests to complete
-        //   const [data1, data2, data3] = await Promise.all([outdoorsDataResp, museumDataResp, entertainmentDataResp]);
-        
-        //   // You can process the data as needed
-        //   return { outdoorsData: data1, museumData: data2, entertainmentData: data3 };
-        // }
-        
       },
       {
         // ...the user visits [URL]/about.
@@ -89,13 +56,13 @@ const router = createBrowserRouter([
         element: <BookClub />,
         loader: async () => {
           const bookclubsDataResp = fetch("/bookclubs").then(response => response.json());
-         
-        
+
+
           // Use Promise.all to wait for all requests to complete
           const [data1] = await Promise.all([bookclubsDataResp]);
-        
+
           // You can process the data as needed
-          return { bookclubsData: data1};
+          return { bookclubsData: data1 };
         }
       },
       {
@@ -103,17 +70,17 @@ const router = createBrowserRouter([
         element: <DiscussionPosts />,
         loader: async ({ params }) => {
           const { id } = params;
-      
+
           // Modify the fetch URL to include the dynamic id parameter
           const allDiscussionsDataResp = fetch(`/discussions/bybookclub/${id}`).then(response => response.json());
           const allBooksDataResp = fetch(`/books/bybookclub/${id}`).then(response => response.json());
-          
-          
+
+
           // Use Promise.all to wait for all requests to complete
           const [data1, data2] = await Promise.all([allDiscussionsDataResp, allBooksDataResp]);
-      
+
           // You can process the data as needed
-          return { discussionPostsData: data1 , allBooksData: data2};
+          return { discussionPostsData: data1, allBooksData: data2 };
         }
       }
 
