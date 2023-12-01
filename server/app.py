@@ -72,7 +72,6 @@ def get_discussions_by_bookclub(bookclub_id):
     posts = DiscussionPost.query.filter_by(bookclub_id=bookclub_id).all()
     return jsonify([post.to_dict() for post in posts])
     
-
 #curl -i http://127.0.0.1:5000/discussions
 @app.route('/discussions', methods=['GET'])
 def get_discussion_posts():
@@ -107,26 +106,36 @@ def update_discussion_post(post_id):
         return jsonify(post.to_dict()), 200
     return jsonify({"error": "No content provided"}), 400
 
-#curl -X POST http://127.0.0.1:5000/discussions/1 \ -H "Content-Type: application/json" \ -d '{"content": "Buenos Dias"}'
+#curl -X POST http://127.0.0.1:5000/discussions/1 \
+#-H "Content-Type: application/json" \
+#-d '{"content": "Buenos Dias"}'
+
 @app.route('/discussions/<int:bookclub_id>', methods=['POST'])
 def create_discussion_post(bookclub_id):
-    def get_fake_user_id():
+    def get_fake_user():
         fake = Faker()
-        return fake.random_int(min=1, max=10)  # Adjust the range as needed
+        user_id = fake.random_int(min=1, max=10)  # Adjust the range as needed
+        user = User.query.get(user_id)  # Query the User model to get the user object
+        if not user:
+            return None
+        return user
 
     def get_fake_likes():
         fake = Faker()
         return fake.random_int(min=0, max=500)  # Adjust the range as needed for likes
 
-    user_id = get_fake_user_id()
-    likes = get_fake_likes()  # Generate fake likes
+    user = get_fake_user()
+    if not user:
+        return jsonify({"error": "User not found"}), 404
+
+    likes = get_fake_likes()
     content = request.json.get('content')
     
     if not content:
         return jsonify({"error": "No content provided"}), 400
 
-    post_date = datetime.utcnow()  # Sets the current UTC time as the post date
-    post = DiscussionPost(content=content, post_date=post_date, likes=likes, user_id=user_id, bookclub_id=bookclub_id)
+    post_date = datetime.utcnow()
+    post = DiscussionPost(content=content, post_date=post_date, likes=likes, user_id=user.id, username=user.username, bookclub_id=bookclub_id)
     
     db.session.add(post)
     db.session.commit()
