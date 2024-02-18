@@ -1,5 +1,9 @@
 # PagePals Prototype Platform 
 
+
+[pagepalsd.mov.zip](https://github.com/mariakoutsoukalis/Phase4_Fullstack_Project/files/14324949/pagepalsd.mov.zip)
+
+
 # Introduction
 Welcome to the PagePals Prototype Platform, a full-stack web application designed for book enthusiasts to engage in lively discussions, share their passion for literature, and connect with fellow readers.
 
