@@ -170,3 +170,4 @@ client_frontend/
 
 styles.css
 /public/
+seed.py
