@@ -56,7 +56,7 @@ const router = createBrowserRouter([
         path: "bookclub",
         element: <BookClub />,
         loader: async () => {
-          const bookclubsDataResp = fetch("/bookclubs").then(response => response.json());
+          const bookclubsDataResp = fetch('http://127.0.0.1:5000/bookclubs').then(response => response.json());
 
 
           // Use Promise.all to wait for all requests to complete
@@ -73,8 +73,8 @@ const router = createBrowserRouter([
           const { id } = params;
 
           // Modify the fetch URL to include the dynamic id parameter
-          const allDiscussionsDataResp = fetch(`/discussions/bybookclub/${id}`).then(response => response.json());
-          const allBooksDataResp = fetch(`/books/bybookclub/${id}`).then(response => response.json());
+          const allDiscussionsDataResp = fetch(`http://127.0.0.1:5000/discussions/bybookclub/${id}`).then(response => response.json());
+          const allBooksDataResp = fetch(`http://127.0.0.1:5000/books/bybookclub/${id}`).then(response => response.json());
 
 
           // Use Promise.all to wait for all requests to complete

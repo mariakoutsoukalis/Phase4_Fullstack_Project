@@ -4,9 +4,11 @@ from flask import Flask
 from models import db, BookClub, DiscussionPost, Book, User, UserBookClubAssociation
 from datetime import datetime
 from flask_migrate import Migrate
+from flask_cors import CORS
 
 
 app = Flask(__name__)
+CORS(app)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///app.db"
 migrate = Migrate(app, db)
 db.init_app(app)
@@ -52,12 +54,23 @@ def get_usernames_from_discussions():
     # Return the list of usernames as a JSON response
     return jsonify(usernames)
 
-"""Route for BookClub"""
-#curi i- http://127.0.0.1:5000/bookclubs
+# """Route for BookClub"""
+# #curi i- http://127.0.0.1:5000/bookclubs
+# @app.route('/bookclubs', methods=['GET'])
+# def get_bookclubs():
+#     bookclubs = BookClub.query.all()
+#     return jsonify([bookclub.to_dict() for bookclub in bookclubs])
+
 @app.route('/bookclubs', methods=['GET'])
 def get_bookclubs():
     bookclubs = BookClub.query.all()
-    return jsonify([bookclub.to_dict() for bookclub in bookclubs])
+    bookclubs_data = [{
+        'id': bookclub.id,
+        'name': bookclub.name,
+        'description': bookclub.description,
+        'image_url': bookclub.image_url
+    } for bookclub in bookclubs]
+    return jsonify(bookclubs_data)
 
 @app.route('/bookclubs/<int:bookclub_id>', methods=['GET'])
 def get_bookclub(bookclub_id):

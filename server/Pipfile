@@ -11,6 +11,7 @@ flask-restful = "*"
 flask = "*"
 flask-migrate = "*"
 flask-sqlalchemy = "*"
+flask-cors = "*"
 
 [requires]
 python_full_version = "*"

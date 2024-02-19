@@ -167,3 +167,6 @@ client_frontend/
 # Local Garbage
 .DS_Store
 */.DS_Store
+
+styles.css
+/public/

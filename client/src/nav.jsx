@@ -14,7 +14,7 @@ export default function Nav() {
             `text-lg hover:underline ${isActive && 'font-semibold'}`
           }
         >
-          Home
+          Genres
         </NavLink>
 
         <div className="flex gap-10">
@@ -24,16 +24,16 @@ export default function Nav() {
               `text-lg hover:underline ${isActive && 'font-semibold'}`
             }
           >
-            BookClubs
+            Forums
           </NavLink>
-          <NavLink
+          {/* <NavLink
             to="/about"
             className={({ isActive }) =>
               `text-lg hover:underline ${isActive && 'font-semibold'}`
             }
           >
-            About Us
-          </NavLink>
+            About
+          </NavLink> */}
         </div>
       </div>
     </nav>
