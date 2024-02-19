@@ -1,12 +1,5 @@
 # PagePals Prototype Platform 
 
-
-
-
-https://github.com/mariakoutsoukalis/Phase4_Fullstack_Project/assets/147335262/1595779f-e536-4994-a8e5-8014a806526c
-
-
-
 # Introduction
 Welcome to the PagePals Prototype Platform, a full-stack web application designed for book enthusiasts to engage in lively discussions, share their passion for literature, and connect with fellow readers.
 
