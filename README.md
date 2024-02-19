@@ -5,9 +5,10 @@ https://github.com/mariakoutsoukalis/Phase4_Fullstack_Project/assets/147335262/6
 
 
 # New Branch with Individual Updates
-Added Enhanced Database Content reflected in updated UI
-Refined CSS by scoping content with container resizing and opacity editing within content loops.
-Trimmed NavLink for Demonstration Purposes
+Updated Database Content:
+Reflected in updated UI.
+Adjusted / scoped CSS with content loop, resizing containers and editing opacity:
+Reduced NavLink for Demo
 
 # Introduction
 Welcome to the PagePals Prototype Platform, a full-stack web application designed for book enthusiasts to engage in lively discussions, share their passion for literature, and connect with fellow readers.
