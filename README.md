@@ -1,7 +1,10 @@
 # PagePals Prototype Platform 
 
 
-[pagepalsd.mov.zip](https://github.com/mariakoutsoukalis/Phase4_Fullstack_Project/files/14324949/pagepalsd.mov.zip)
+
+
+https://github.com/mariakoutsoukalis/Phase4_Fullstack_Project/assets/147335262/1595779f-e536-4994-a8e5-8014a806526c
+
 
 
 # Introduction
